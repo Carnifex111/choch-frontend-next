@@ -212,3 +212,11 @@ a {
     opacity: 1;
   }
 }
+
+.error-message {
+  color: #ab343a;
+  font-size: 11px;
+  display: flex;
+  margin-left: 5px;
+  margin-top: 3px;
+}

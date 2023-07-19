@@ -12,18 +12,14 @@ const NameInput = ({ register, errors }: IAuthPageInput) => {
     <div className={`form-group ${hasValue ? 'filled' : ''}`}>
       <input
         {...register('name', {
-          required: 'Введите имя!',
+          required: 'Введите никнейм',
           minLength: {
-            value: 2,
-            message: 'Минимум 2 символа!',
+            value: 4,
+            message: 'Минимум 4 символа',
           },
           maxLength: {
             value: 15,
-            message: 'Не более 15 символов!',
-          },
-          pattern: {
-            value: /^[а-яА-Яa-zA-ZёЁ]*$/,
-            message: 'Недопустимое значение!',
+            message: 'Не более 15 символов',
           },
         })}
         className="form-control"
@@ -34,7 +30,9 @@ const NameInput = ({ register, errors }: IAuthPageInput) => {
       <label htmlFor="name" className={hasValue ? 'active' : ''}>
         Никнейм
       </label>
-      {errors.name && <span>{errors.name?.message}</span>}
+      {errors.name && (
+        <span className="error-message">{errors.name?.message}</span>
+      )}
     </div>
   )
 }

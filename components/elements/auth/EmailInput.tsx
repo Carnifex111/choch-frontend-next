@@ -12,7 +12,7 @@ const EmailInput = ({ register, errors }: IAuthPageInput) => {
     <div className={`form-group ${hasValue ? 'filled' : ''}`}>
       <input
         {...register('email', {
-          required: 'Введите Email!',
+          required: 'Введите Email',
           pattern: {
             value: /\S+@\S+\.\S+/,
             message: 'Неправильный Email!',
@@ -26,7 +26,9 @@ const EmailInput = ({ register, errors }: IAuthPageInput) => {
       <label htmlFor="email" className={hasValue ? 'active' : ''}>
         Email
       </label>
-      {errors.email && <span>{errors.email?.message}</span>}
+      {errors.email && (
+        <span className="error-message">{errors.email?.message}</span>
+      )}
     </div>
   )
 }

@@ -12,14 +12,14 @@ const PasswordInput = ({ register, errors }: IAuthPageInput) => {
     <div className={`form-group ${hasValue ? 'filled' : ''}`}>
       <input
         {...register('password', {
-          required: 'Введите пароль!',
+          required: 'Введите пароль',
           minLength: {
             value: 4,
-            message: 'Минимум 4 символа!',
+            message: 'Минимум 4 символа',
           },
           maxLength: {
             value: 20,
-            message: 'Не более 20 символов!',
+            message: 'Не более 20 символов',
           },
         })}
         className="form-control"
@@ -30,7 +30,9 @@ const PasswordInput = ({ register, errors }: IAuthPageInput) => {
       <label htmlFor="password" className={hasValue ? 'active' : ''}>
         Пароль
       </label>
-      {errors.password && <span>{errors.password?.message}</span>}
+      {errors.password && (
+        <span className="error-message">{errors.password?.message}</span>
+      )}
     </div>
   )
 }
