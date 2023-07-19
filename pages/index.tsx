@@ -1,5 +1,6 @@
 import Head from 'next/head'
 import SingUp from '@/components/templates/AuthPage/SingUp'
+import Login from '@/components/templates/AuthPage/Login'
 
 function Auth() {
   return (

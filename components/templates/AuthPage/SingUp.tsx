@@ -4,9 +4,12 @@ import NameInput from '@/components/elements/auth/NameInput'
 import PasswordInput from '@/components/elements/auth/PasswordInput'
 import Button from '@/components/elements/button'
 import { IInputs } from '@/types/auth'
+import { showAuthError } from '@/utils/errors'
+import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 
 const SingUp = () => {
+  const [spinner, setSpinner] = useState(false)
   const {
     register,
     formState: { errors },
@@ -16,24 +19,21 @@ const SingUp = () => {
 
   const onSubmit = async (data: IInputs) => {
     try {
-      const userData = await singUpFx({
+      setSpinner(true)
+      singUpFx({
         url: '/users/singup',
         username: data.name,
         password: data.password,
         email: data.email,
       })
 
-      if (!userData) {
-        return
-      }
-
       resetField('email')
       resetField('name')
       resetField('password')
     } catch (error) {
-      console.log('error')
+      showAuthError(error)
     } finally {
-      console.log('finally')
+      setSpinner(false)
     }
   }
 
@@ -44,7 +44,9 @@ const SingUp = () => {
         <NameInput register={register} errors={errors} />
         <EmailInput register={register} errors={errors} />
         <PasswordInput register={register} errors={errors} />
-        <Button>Регистрация</Button>
+        <Button>
+          {spinner ? <div className="spinner"></div> : 'Регистрация'}
+        </Button>
       </form>
     </div>
   )

@@ -4,6 +4,10 @@
   &.theme-light {
     background: linear-gradient(89.97deg, $blue 1.84%, $orange 102.67%);
     color: $light;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 17px;
 
     &:hover {
       box-shadow: 2px 2px $blue;
