@@ -1,0 +1,52 @@
+@import '@/styles/variables.scss';
+
+
+.form-group {
+  margin-bottom: 10px;
+  position: relative;
+
+  .form-control {
+    background-color: $light;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    padding: 11px 10px;
+    width: 100%;
+    display: block;
+    font-size: 14px;
+    transition: all .09s ease-out;
+
+    &:focus {
+      outline: none;
+      border-color: $orange;
+      box-shadow: 0 0 3px rgba(255, 127, 80, .6);
+    }
+  }
+
+  label {
+    display: block;
+    position: absolute;
+    top: 11px;
+    left: 10px;
+    cursor: text;
+    font-size: 14px;
+    background-color: #fff;
+    transition: all .09s ease-out;
+
+    &.active {
+      top: -8px;
+      color: $orange;
+      font-size: 12px;
+      transition: all .09s ease-out;
+    }
+  }
+
+  &.filled {
+    input {
+      ~ label {
+        top: -8px;
+        font-size: 12px;
+        transition: all .09s ease-out;
+      }
+    }
+  }
+}
