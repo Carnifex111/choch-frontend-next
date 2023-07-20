@@ -8,6 +8,8 @@ import '@/styles/elements/input.scss'
 import '@/styles/elements/button.scss'
 import '@/styles/auth/login.scss'
 import '@/styles/elements/spinner.scss'
+import '@/styles/modules/header.scss'
+import '@/styles/modules/footer.scss'
 
 const enhance = withHydrate()
 

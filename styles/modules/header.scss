@@ -1,0 +1,124 @@
+@import '@/styles/variables.scss';
+
+.header {
+  z-index: 99999;
+  .header-min-btn {
+    display: none;
+    position: fixed;
+    z-index: 9999;
+    @media (max-width: 576px) {
+      display: block;
+      position: fixed;
+      right: 10px;
+      top: 10px;
+      z-index: 99999;
+      button {
+        font-size: 24px;
+        z-index: 99999;
+      }
+    }
+  }
+
+  .header-icon {
+    display: none;
+    font-size: 30px;
+    position: fixed;
+    top: 23px;
+    left: 20px;
+
+    @media (max-width: 576px) {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      z-index: 99999;
+    }
+
+  }
+
+  .navbar {
+    color: $black;
+    width: 100%;
+    background-color: $light;
+
+    .navlink-wrap {
+      height: 5rem;
+      margin: 0px;
+      padding: 0px;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+
+      .navlink {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        max-width: 100%;
+        width: 1300px;
+        align-items: center;
+
+        div {
+          display: flex;
+          gap: 40px;
+          align-items: center;
+
+          li {
+            cursor: pointer;
+
+            &:hover {
+              font-weight: 700;
+              transition: all ease 0.3s;
+            }
+          }
+
+          .logo {
+            font-weight: 500;
+            font-size: 23px;
+
+            @media (max-width: 576px) {
+              font-size: 50px;
+              margin-top: 70px;
+              margin-bottom: 70px;
+            }
+          }
+
+          .item-link-btn {
+            @media (max-width: 576px) {
+              display: none;
+            }
+          }
+        }
+
+        @media (max-width: 576px) {
+          flex-direction: column;
+          align-items: center;
+
+          div {
+            flex-direction: column;
+          }
+        }
+
+        @media (max-width: 576px) {
+          font-size: 30px;
+        }
+      }
+    }
+
+    @media (max-width: 1370px) {
+      padding: 20px;
+    }
+
+    @media (max-width: 576px) {
+      height: 100rem;
+      background-color: $black;
+      color: $light;
+      display: none;
+
+      &.open {
+        display: block;
+        position: fixed;
+        top: 0;
+        z-index: 2000;
+      }
+    }
+  }
+}
