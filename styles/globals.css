@@ -294,3 +294,9 @@ body {
   max-width: 1300px;
   margin: 0 auto;
 }
+
+.home-page-link {
+  position: absolute;
+  top: 30px;
+  left: 30px;
+}

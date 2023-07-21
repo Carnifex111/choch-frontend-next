@@ -6,8 +6,10 @@ import { IInputs } from '@/types/auth'
 import { showAuthError } from '@/utils/errors'
 import ROUTES from '@/utils/routes.enum'
 import Link from 'next/link'
+import router from 'next/router'
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
+import { FiHome } from 'react-icons/fi'
 
 const Login = () => {
   const [spinner, setSpinner] = useState(false)
@@ -33,11 +35,17 @@ const Login = () => {
       showAuthError(error)
     } finally {
       setSpinner(false)
+      router.push(ROUTES.ACCOUNT_HOME)
     }
   }
 
   return (
     <div className="login-form">
+      <div className="home-page-link">
+        <Link href="/">
+          <FiHome style={{ fontSize: '30px' }} />
+        </Link>
+      </div>
       <form className="login-form-wrap" onSubmit={handleSubmit(onSubmit)}>
         <h2>Вход</h2>
         <EmailInput register={register} errors={errors} />

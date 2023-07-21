@@ -10,6 +10,7 @@ import Link from 'next/link'
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { useRouter } from 'next/router'
+import { FiHome } from 'react-icons/fi'
 
 const SingUp = () => {
   const [spinner, setSpinner] = useState(false)
@@ -44,6 +45,11 @@ const SingUp = () => {
 
   return (
     <div className="login-form">
+      <div className="home-page-link">
+        <Link href="/">
+          <FiHome style={{ fontSize: '30px' }} />
+        </Link>
+      </div>
       <form className="login-form-wrap" onSubmit={handleSubmit(onSubmit)}>
         <h2>Регистрация</h2>
         <NameInput register={register} errors={errors} />
