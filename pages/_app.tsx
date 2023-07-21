@@ -10,6 +10,12 @@ import '@/styles/auth/login.scss'
 import '@/styles/elements/spinner.scss'
 import '@/styles/modules/header.scss'
 import '@/styles/modules/footer.scss'
+import '@/styles/modules/mainBlock.scss'
+import '@/styles/elements/card.scss'
+import '@/styles/modules/lang.scss'
+import '@/styles/modules/courses.scss'
+import '@/styles/modules/question.scss'
+import '@/styles/elements/accordion.scss'
 
 const enhance = withHydrate()
 

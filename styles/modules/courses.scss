@@ -1,0 +1,41 @@
+@import '@/styles/variables.scss';
+
+.courses-block{
+    position: relative;
+    padding-top: 50px;
+    padding-bottom: 30px;
+    &-title{
+        font-size: 50px;
+        font-weight: 800;
+        background: linear-gradient(89.97deg, $black 1.84%, $blue 102.67%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        text-align: center;
+        @media(max-width: 734px) {
+            font-size: 50px;
+        }
+
+    }
+    &-img {
+        width: 130px;
+        transform: translate3d(30px);
+        position: absolute;
+        top: 50px;
+        transform: rotate(0.05turn);
+        @media(max-width: 474px) {
+            top: -30px;
+        }
+    }
+    &-items {
+        margin-top: 100px;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        gap: 30px;
+        @media(max-width: 474px) {
+            margin-top: 50px;
+        }
+    }
+}

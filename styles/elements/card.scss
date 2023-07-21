@@ -1,0 +1,31 @@
+@import '@/styles/variables.scss';
+
+.card-item{
+    width: 350px;
+    text-align: center;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    &-wrap {
+        padding: 10px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+    &-lang {
+        font-size: 82px;
+        font-weight: 800;
+        background: linear-gradient(89.97deg, $blue 1.84%, $orange 102.67%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+    &-title{
+                margin-top: 20px;
+    }
+    &-descr{
+        margin: 20px 0px;
+    }
+    &-price {
+        margin-bottom: 10px;
+    }
+}

@@ -5,11 +5,15 @@ import PasswordInput from '@/components/elements/auth/PasswordInput'
 import Button from '@/components/elements/button'
 import { IInputs } from '@/types/auth'
 import { showAuthError } from '@/utils/errors'
+import ROUTES from '@/utils/routes.enum'
+import Link from 'next/link'
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
+import { useRouter } from 'next/router'
 
 const SingUp = () => {
   const [spinner, setSpinner] = useState(false)
+  const router = useRouter()
   const {
     register,
     formState: { errors },
@@ -34,6 +38,7 @@ const SingUp = () => {
       showAuthError(error)
     } finally {
       setSpinner(false)
+      router.push(ROUTES.SINGIN)
     }
   }
 
@@ -47,6 +52,13 @@ const SingUp = () => {
         <Button>
           {spinner ? <div className="spinner"></div> : 'Регистрация'}
         </Button>
+        <Link href={ROUTES.SINGIN}>
+          {' '}
+          <h4 style={{ fontWeight: '300', cursor: 'pointer' }}>
+            Есть аккаунт?{' '}
+            <span style={{ textDecoration: 'underline' }}>Войти</span>
+          </h4>
+        </Link>
       </form>
     </div>
   )

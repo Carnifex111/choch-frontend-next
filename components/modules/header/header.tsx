@@ -2,6 +2,8 @@ import { useState } from 'react'
 import { AiOutlineMenu } from 'react-icons/ai'
 import { AiOutlineClose } from 'react-icons/ai'
 import Button from '@/components/elements/button'
+import ROUTES from '@/utils/routes.enum'
+import Link from 'next/link'
 
 const Header = () => {
   const [burgerOpen, setBurgerOpen] = useState(false)
@@ -19,7 +21,9 @@ const Header = () => {
         {burgerOpen ? <AiOutlineClose /> : <AiOutlineMenu />}
       </div>
       <div className="header-min-btn">
-        <Button>Вход</Button>
+        <Link href={ROUTES.SINGIN}>
+          <Button>Вход</Button>
+        </Link>
       </div>
       <nav className={`navbar ${burgerOpen ? 'open' : ''}`}>
         <div className="navlink-wrap">
@@ -32,7 +36,9 @@ const Header = () => {
             </div>
             <div>
               <li className="navlink-item item-link-btn">
-                <Button>Вход</Button>
+                <Link href={ROUTES.SINGIN}>
+                  <Button>Вход</Button>
+                </Link>
               </li>
               {/* <li className="navlink-item">Регистрация</li>
               <li className="navlink-item">Профиль</li> */}

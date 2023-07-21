@@ -1,0 +1,79 @@
+@import '@/styles/variables.scss';
+
+.main-block-wrap{
+    display: flex;
+    justify-content: space-between;
+    align-items: center; 
+    height: 800px;
+    .main-block-left{
+        width: 700px;
+        @media(max-width: 764px) {
+            width: 100%;
+        }
+        &-title {
+            font-size: 62px;
+            font-weight: 800;
+            line-height: 75px;
+            background: linear-gradient(89.97deg, $blue 1.84%, $orange 102.67%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            @media(max-width: 1100px) {
+                font-size: 52px;
+                line-height: 55px;
+            }
+            @media(max-width: 764px) {
+                text-align: center;
+            }
+            @media(max-width: 594px) {
+                font-size: 40px;
+            }
+            @media(max-width: 576px) {
+                font-size: 30px;
+            }
+        }
+        &-paragraf {
+            color: $black;
+            width: 650px;
+            padding-top: 33px;
+            font-size: 20px;
+            @media(max-width: 1100px) {
+                font-size: 18px;
+            }
+            @media(max-width: 764px) {
+                text-align: center;
+                width: 100%;
+            }
+            @media(max-width: 576px) {
+                font-size: 15px;
+                padding-top: 20px;
+            }
+        }
+        &-btn {
+            margin-top: 30px;
+            width: 200px;
+            @media(max-width: 764px) {
+                margin: 20px auto;
+            }
+        }
+    }
+    @media(max-width: 1370px) {
+        padding: 30px;
+        padding-top: 150px;
+    }
+    @media(max-width: 971px) {
+        flex-direction: column-reverse;
+        height: 100%;
+    }
+    .main-block-right-img{
+        img {
+            @media(max-width: 971px) {
+                width: 300px;
+            }
+        }
+    }
+    @media(max-width: 576px) {
+        margin-top: 70px;
+        padding-top: 0px;
+    }
+}
