@@ -1,5 +1,12 @@
+import Header from '@/components/modules/header/header'
+
 const AccountHome = () => {
-  return <>Личный кабинет</>
+  return (
+    <>
+      <Header />
+      Личный кабинет
+    </>
+  )
 }
 
 export default AccountHome
