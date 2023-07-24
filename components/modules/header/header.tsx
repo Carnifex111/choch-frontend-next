@@ -5,13 +5,15 @@ import Button from '@/components/elements/button'
 import ROUTES from '@/utils/routes.enum'
 import Link from 'next/link'
 import { IUser } from '@/types/auth'
-import { checkUserAuthFx } from '@/app/api/auth'
+import { checkUserAuthFx, logoutFx } from '@/app/api/auth'
 import { SlUser, SlLogin } from 'react-icons/sl'
 import { FiShoppingCart } from 'react-icons/fi'
+import { MdOutlineLogout } from 'react-icons/md'
+import { useRouter } from 'next/router'
 
 const Header = () => {
   const [burgerOpen, setBurgerOpen] = useState(false)
-
+  const router = useRouter()
   const [user, setUser] = useState<IUser | null>(null)
 
   useEffect(() => {
@@ -25,6 +27,11 @@ const Header = () => {
 
   const toggleBurger = () => {
     setBurgerOpen((prevOpen) => !prevOpen)
+  }
+
+  const handleLogout = async () => {
+    await logoutFx('/users/logout')
+    router.push(ROUTES.SINGIN)
   }
 
   return (
@@ -83,6 +90,11 @@ const Header = () => {
               </Link>
               <li className="navlink-item">Каталог</li>
               <li className="navlink-item">О нас</li>
+              {user ? (
+                <li className="navlink-item lk">
+                  <p onClick={handleLogout}>Выйти</p>
+                </li>
+              ) : null}
               <li className="navlink-item"></li>
             </div>
             <div>
@@ -97,6 +109,10 @@ const Header = () => {
                     <p>
                       <FiShoppingCart style={{ marginRight: '5px' }} />
                       Корзина
+                    </p>
+                    <p onClick={handleLogout}>
+                      <MdOutlineLogout style={{ marginRight: '5px' }} />
+                      Выйти
                     </p>
                   </div>
                 ) : (

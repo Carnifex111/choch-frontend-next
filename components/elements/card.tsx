@@ -1,6 +1,7 @@
 import Button from './button'
 
 interface ICard {
+  key: string | number
   courseIcon: string
   title: string
   descr: string
@@ -8,9 +9,9 @@ interface ICard {
   price?: string
 }
 
-const Card = ({ courseIcon, title, descr, buttonText, price }: ICard) => {
+const Card = ({ key, courseIcon, title, descr, buttonText, price }: ICard) => {
   return (
-    <>
+    <li style={{ listStyle: 'none' }} key={key}>
       <div className="card-item">
         <div className="card-item-wrap">
           <div className="card-item-lang">{courseIcon}</div>
@@ -20,7 +21,7 @@ const Card = ({ courseIcon, title, descr, buttonText, price }: ICard) => {
           <Button>{buttonText}</Button>
         </div>
       </div>
-    </>
+    </li>
   )
 }
 
