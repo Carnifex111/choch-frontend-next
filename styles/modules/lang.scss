@@ -4,19 +4,23 @@
         position: relative;
         padding-top: 100px;
         margin-top: 50px;
+        @media(min-width: 1366px) {
+            margin-top: 150px;
+        }
         &-img {
             position: absolute;
             width: 150px;
-            top: 20px;
+            top: 84px;
             left: 0;
             @media(max-width: 604px) {
                 left: 30%;
+                top: 50px;
             } 
         }
         &-title{
             position: absolute;
             right: 0;
-            top: 50px;
+            top: 84px;
             text-align: end;
             h2{
                 color: $black;

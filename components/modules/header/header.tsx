@@ -10,20 +10,14 @@ import { SlUser, SlLogin } from 'react-icons/sl'
 import { FiShoppingCart } from 'react-icons/fi'
 import { MdOutlineLogout } from 'react-icons/md'
 import { useRouter } from 'next/router'
+import useUserCheckAuth from '@/hooks/useUserCheckAuth'
+import CartPopup from '@/components/elements/cart/cart-popup'
 
 const Header = () => {
+  const [isCartPopupOpen, setCartPopupOpen] = useState(true)
   const [burgerOpen, setBurgerOpen] = useState(false)
   const router = useRouter()
-  const [user, setUser] = useState<IUser | null>(null)
-
-  useEffect(() => {
-    const fetchUser = async () => {
-      const userData = await checkUserAuthFx('/users/login-check')
-      setUser(userData)
-    }
-
-    fetchUser()
-  }, [])
+  const user = useUserCheckAuth()
 
   const toggleBurger = () => {
     setBurgerOpen((prevOpen) => !prevOpen)
@@ -32,6 +26,10 @@ const Header = () => {
   const handleLogout = async () => {
     await logoutFx('/users/logout')
     router.push(ROUTES.SINGIN)
+  }
+
+  const openCart = () => {
+    setCartPopupOpen(!isCartPopupOpen)
   }
 
   return (
@@ -98,7 +96,7 @@ const Header = () => {
               <li className="navlink-item"></li>
             </div>
             <div>
-              <li className="navlink-item item-link-btn">
+              <div className="navlink-item item-link-btn">
                 {user ? (
                   <div className="profile">
                     <Link href={ROUTES.ACCOUNT_HOME}>
@@ -106,11 +104,20 @@ const Header = () => {
                         <SlUser style={{ marginRight: '5px' }} /> Личный кабинет
                       </p>
                     </Link>
-                    <p>
+                    <p style={{ cursor: 'pointer' }} onClick={openCart}>
                       <FiShoppingCart style={{ marginRight: '5px' }} />
-                      Корзина
+                      <span
+                        style={
+                          isCartPopupOpen
+                            ? { color: '#ddd' }
+                            : { color: '#000' }
+                        }
+                      >
+                        Корзина
+                      </span>
+                      {isCartPopupOpen && <CartPopup />}
                     </p>
-                    <p onClick={handleLogout}>
+                    <p>
                       <MdOutlineLogout style={{ marginRight: '5px' }} />
                       Выйти
                     </p>
@@ -120,7 +127,7 @@ const Header = () => {
                     <Button>Вход</Button>
                   </Link>
                 )}
-              </li>
+              </div>
             </div>
           </ul>
         </div>

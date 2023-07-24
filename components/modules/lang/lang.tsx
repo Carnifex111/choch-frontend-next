@@ -1,4 +1,4 @@
-import Card from '@/components/elements/card'
+import Card from '@/components/elements/cart/card'
 import { forwardRef } from 'react'
 
 const Lang = forwardRef(({ scrollToCourse }: any, ref: any) => {

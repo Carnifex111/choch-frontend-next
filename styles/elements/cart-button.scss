@@ -1,0 +1,14 @@
+.cart-button{
+    width: 100%;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    display: flex;
+    padding: 10px 20px;
+    cursor: pointer;
+    align-items: center;
+    justify-content: center;
+    transition: all 1s ease;
+    &:hover{
+        border: 1px solid #8f8888;
+    }
+}

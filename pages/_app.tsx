@@ -17,6 +17,8 @@ import '@/styles/modules/lang.scss'
 import '@/styles/modules/courses.scss'
 import '@/styles/modules/question.scss'
 import '@/styles/elements/accordion.scss'
+import '@/styles/elements/cart-button.scss'
+import '@/styles/elements/cart-popup.scss'
 
 const enhance = withHydrate()
 

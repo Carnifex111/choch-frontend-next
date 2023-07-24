@@ -1,0 +1,35 @@
+.cart-popup{
+    position: absolute;
+    top: 70px;
+    &-content{
+        display: flex;
+        flex-direction: column;
+        border: 1px solid #ddd;
+        padding: 30px;
+        box-shadow: 3px 3px 2px 1px rgba(0, 0, 255, .2);
+        background: #fff;
+        border-radius: 5px;
+    }
+}
+
+.cart-popup-item{
+    display: flex;
+    justify-content: space-around;
+    position: relative;
+    &-name {
+        width: 100px;
+    }
+    &-price {
+        width: 50px;
+    }
+    &-icon-dlt {
+        position: absolute;
+        top: -30px;
+        right: 0;
+    }
+}
+
+.line{
+  width: 100%;
+  border-bottom: 1px solid #ddd; /* или можно использовать border-top: 1px solid #ddd; */
+}

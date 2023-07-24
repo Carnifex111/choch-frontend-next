@@ -5,6 +5,9 @@
     justify-content: space-between;
     align-items: center; 
     height: 800px;
+    @media(min-width: 1366px) {
+        padding-top: 160px;
+    }
     .main-block-left{
         width: 700px;
         @media(max-width: 764px) {
