@@ -2,6 +2,7 @@ import { singInFx } from '@/app/api/auth'
 import EmailInput from '@/components/elements/auth/EmailInput'
 import PasswordInput from '@/components/elements/auth/PasswordInput'
 import Button from '@/components/elements/button'
+import { setUser } from '@/context/user'
 import { IInputs } from '@/types/auth'
 import { showAuthError } from '@/utils/errors'
 import ROUTES from '@/utils/routes.enum'
@@ -23,11 +24,13 @@ const Login = () => {
   const onSubmit = async (data: IInputs) => {
     try {
       setSpinner(true)
-      await singInFx({
+      const response = await singInFx({
         url: '/users/login',
         email: data.email,
         password: data.password,
       })
+
+      setUser(response.user)
 
       resetField('email')
       resetField('password')

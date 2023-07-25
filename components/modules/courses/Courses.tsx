@@ -4,6 +4,7 @@ import Card from '@/components/elements/cart/card'
 import CartButton from '@/components/elements/cart/cart-button'
 import { $courses, setCourse } from '@/context/course'
 import useUserCheckAuth from '@/hooks/useUserCheckAuth'
+import { toggleCartItem } from '@/utils/shopping-cart'
 import { useStore } from 'effector-react'
 import { forwardRef, useEffect, useState } from 'react'
 import { toast } from 'react-toastify'
@@ -39,7 +40,7 @@ const Courses = forwardRef((props, ref: any) => {
               price={`${item.price} ₽`}
               descr={item.you_learn}
               buttonText="Подробнее..."
-              cartButton={user ? <CartButton /> : null}
+              cartButton={user ? <CartButton partId={item.id} /> : null}
             />
           ))}
       </div>

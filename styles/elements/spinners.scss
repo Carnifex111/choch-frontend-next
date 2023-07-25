@@ -20,3 +20,20 @@
     -webkit-transform: rotate(360deg);
   }
 }
+
+
+
+.spinner-component {
+  border: 4px solid rgba(0, 0, 0, 0.1);
+  border-left-color: #333;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  animation: spin-component 1s linear infinite;
+}
+
+@keyframes spin-component {
+  to {
+    transform: rotate(360deg);
+  }
+}

@@ -4,7 +4,7 @@ import { checkUserAuthFx } from '@/app/api/auth'
 import { IUser } from '@/types/auth'
 
 const useUserCheckAuth = () => {
-  const [user, setUser] = useState<IUser | null>(null)
+  const [user, setUser] = useState<any>()
 
   useEffect(() => {
     const fetchUser = async () => {

@@ -14,7 +14,7 @@ import useUserCheckAuth from '@/hooks/useUserCheckAuth'
 import CartPopup from '@/components/elements/cart/cart-popup'
 
 const Header = () => {
-  const [isCartPopupOpen, setCartPopupOpen] = useState(true)
+  const [isCartPopupOpen, setCartPopupOpen] = useState(false)
   const [burgerOpen, setBurgerOpen] = useState(false)
   const router = useRouter()
   const user = useUserCheckAuth()
@@ -117,7 +117,7 @@ const Header = () => {
                       </span>
                       {isCartPopupOpen && <CartPopup />}
                     </p>
-                    <p>
+                    <p style={{ cursor: 'pointer' }} onClick={handleLogout}>
                       <MdOutlineLogout style={{ marginRight: '5px' }} />
                       Выйти
                     </p>
