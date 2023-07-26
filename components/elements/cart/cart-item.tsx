@@ -1,33 +1,28 @@
+import { getCartItemsFx, removeFromCartFx } from '@/app/api/shopping-cart'
+import { setDisableCart } from '@/context/shopping-cart'
+import { $user } from '@/context/user'
+import { useStore } from 'effector-react'
 import { MdDelete } from 'react-icons/md'
-import { removeItemFromCart } from '@/utils/shopping-cart'
-import updateCartItems from '@/utils/updateCartItems'
-import { useState } from 'react'
 
 const CartPopupItem = ({ courseName, coursePrice, partId, id }: any) => {
-  const [isLoading, setIsLoading] = useState(true)
+  const user = useStore($user)
 
-  const deleteCartItem = async () => {
-    try {
-      await removeItemFromCart(partId)
-      updateCartItems({ setIsLoading })
-    } catch (error) {}
+  const deleteItem = async () => {
+    await removeFromCartFx(`/shopping-cart/remove/${partId}}`)
+    //await getCartItemsFx(`/shopping-cart/${user.userId}`)
+    const cartItems = await getCartItemsFx(`/shopping-cart/${user.userId}`)
+    const partIdsInCart = cartItems.map((item: any) => item.partId)
+    setDisableCart({ partId, disabled: partIdsInCart.includes(partId) })
   }
 
   return (
     <>
       <div key={id} className="cart-popup-item">
-        {isLoading ? (
-          <>
-            <div className="cart-popup-item-name">{courseName}</div>
-            <div className="cart-popup-item-price">{coursePrice} ₽</div>
-            <MdDelete
-              onClick={deleteCartItem}
-              className="cart-popup-item-icon-dlt"
-            />
-          </>
-        ) : (
-          'Курс удален'
-        )}
+        <>
+          <div className="cart-popup-item-name">{courseName}</div>
+          <div className="cart-popup-item-price">{coursePrice} ₽</div>
+          <MdDelete onClick={deleteItem} className="cart-popup-item-icon-dlt" />
+        </>
       </div>
 
       <span className="line"></span>

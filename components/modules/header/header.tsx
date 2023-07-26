@@ -12,12 +12,15 @@ import { MdOutlineLogout } from 'react-icons/md'
 import { useRouter } from 'next/router'
 import useUserCheckAuth from '@/hooks/useUserCheckAuth'
 import CartPopup from '@/components/elements/cart/cart-popup'
+import { getCartItemsFx } from '@/app/api/shopping-cart'
+import { useStore } from 'effector-react'
+import { $user } from '@/context/user'
 
 const Header = () => {
   const [isCartPopupOpen, setCartPopupOpen] = useState(false)
   const [burgerOpen, setBurgerOpen] = useState(false)
   const router = useRouter()
-  const user = useUserCheckAuth()
+  const user = useStore($user)
 
   const toggleBurger = () => {
     setBurgerOpen((prevOpen) => !prevOpen)
@@ -28,8 +31,10 @@ const Header = () => {
     router.push(ROUTES.SINGIN)
   }
 
-  const openCart = () => {
+  const openCart = async () => {
     setCartPopupOpen(!isCartPopupOpen)
+    if (isCartPopupOpen === false)
+      await getCartItemsFx(`/shopping-cart/${user.userId}`)
   }
 
   return (

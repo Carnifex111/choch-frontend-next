@@ -1,18 +1,17 @@
-import { checkUserAuthFx } from '@/app/api/auth'
 import { addToCartFx, getCartItemsFx } from '@/app/api/shopping-cart'
+import { useStore } from 'effector-react'
+import { useEffect, useState } from 'react'
+import { FiShoppingCart } from 'react-icons/fi'
+import { BsFillCartPlusFill } from 'react-icons/bs'
+import { $user } from '@/context/user'
 import {
   $disableCart,
   $shoppingCart,
   setDisableCart,
 } from '@/context/shopping-cart'
-import useUserCheckAuth from '@/hooks/useUserCheckAuth'
-import { useStore } from 'effector-react'
-import { useEffect, useState } from 'react'
-import { FiShoppingCart } from 'react-icons/fi'
-import { BsFillCartPlusFill } from 'react-icons/bs'
 
 const CartButton = ({ partId }: any) => {
-  const user = useUserCheckAuth()
+  const user = useStore($user)
   const shoppingCart = useStore($shoppingCart)
   const disableCart = useStore($disableCart)
 
@@ -28,12 +27,14 @@ const CartButton = ({ partId }: any) => {
     if (user && partId) {
       checkCartItem()
     }
-  }, [user, partId, shoppingCart])
+  }, [])
 
-  const handleAddToCat = async () => {
+  const addToCart = async () => {
     const username: string = user.username
-    addToCartFx({ url: '/shopping-cart/add', username, partId })
-    setDisableCart({ partId, disabled: true })
+    await addToCartFx({ url: '/shopping-cart/add', username, partId })
+    const cartItems = await getCartItemsFx(`/shopping-cart/${user.userId}`)
+    const partIdsInCart = cartItems.map((item: any) => item.partId)
+    setDisableCart({ partId, disabled: partIdsInCart.includes(partId) })
   }
 
   return (
@@ -46,7 +47,7 @@ const CartButton = ({ partId }: any) => {
           Товар в корзине
         </div>
       ) : (
-        <div onClick={handleAddToCat} className="cart-button">
+        <div onClick={addToCart} className="cart-button">
           <FiShoppingCart style={{ fontSize: '25px', paddingRight: '5px' }} />{' '}
           Добавить в корзину
         </div>

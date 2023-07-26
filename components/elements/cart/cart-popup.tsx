@@ -6,33 +6,17 @@ import { getCartItemsFx } from '@/app/api/shopping-cart'
 import { IShoppingCartItem } from '@/types/shopping-cart'
 import { checkUserAuthFx } from '@/app/api/auth'
 import Spinner from '../spinner'
+import { useStore } from 'effector-react'
+import { $shoppingCart } from '@/context/shopping-cart'
+import { $user } from '@/context/user'
 
 const CartPopup = () => {
-  const [isLoading, setIsLoading] = useState(true)
-  const [cartItems, setCartItems] = useState<IShoppingCartItem[]>([])
+  const [isLoading, setIsLoading] = useState(false)
+
+  const cartItems = useStore($shoppingCart)
 
   const handleCartClick = (event: any) => {
     event.stopPropagation()
-  }
-
-  useEffect(() => {
-    loadCartItems()
-  }, [])
-
-  const loadCartItems = async () => {
-    try {
-      const userData = await checkUserAuthFx('/users/login-check')
-
-      const cartItems = await getCartItemsFx(
-        `/shopping-cart/${userData.userId}`
-      )
-
-      setCartItems(cartItems)
-      setIsLoading(false)
-    } catch (error) {
-      toast.error((error as Error).message)
-      setIsLoading(false)
-    }
   }
 
   return (
