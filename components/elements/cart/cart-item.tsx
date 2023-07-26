@@ -3,17 +3,10 @@ import { setDisableCart } from '@/context/shopping-cart'
 import { $user } from '@/context/user'
 import { useStore } from 'effector-react'
 import { MdDelete } from 'react-icons/md'
+import { deleteItem } from '@/utils/shopping-cart'
 
 const CartPopupItem = ({ courseName, coursePrice, partId, id }: any) => {
   const user = useStore($user)
-
-  const deleteItem = async () => {
-    await removeFromCartFx(`/shopping-cart/remove/${partId}}`)
-    //await getCartItemsFx(`/shopping-cart/${user.userId}`)
-    const cartItems = await getCartItemsFx(`/shopping-cart/${user.userId}`)
-    const partIdsInCart = cartItems.map((item: any) => item.partId)
-    setDisableCart({ partId, disabled: partIdsInCart.includes(partId) })
-  }
 
   return (
     <>
@@ -21,7 +14,10 @@ const CartPopupItem = ({ courseName, coursePrice, partId, id }: any) => {
         <>
           <div className="cart-popup-item-name">{courseName}</div>
           <div className="cart-popup-item-price">{coursePrice} ₽</div>
-          <MdDelete onClick={deleteItem} className="cart-popup-item-icon-dlt" />
+          <MdDelete
+            onClick={() => deleteItem(partId, user)}
+            className="cart-popup-item-icon-dlt"
+          />
         </>
       </div>
 

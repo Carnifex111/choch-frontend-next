@@ -1,4 +1,8 @@
-import { addToCartFx, getCartItemsFx } from '@/app/api/shopping-cart'
+import {
+  addToCartFx,
+  getCartItemsFx,
+  removeFromCartFx,
+} from '@/app/api/shopping-cart'
 import { useStore } from 'effector-react'
 import { useEffect, useState } from 'react'
 import { FiShoppingCart } from 'react-icons/fi'
@@ -9,11 +13,13 @@ import {
   $shoppingCart,
   setDisableCart,
 } from '@/context/shopping-cart'
+import { deleteItem } from '@/utils/shopping-cart'
 
 const CartButton = ({ partId }: any) => {
   const user = useStore($user)
   const shoppingCart = useStore($shoppingCart)
   const disableCart = useStore($disableCart)
+  const [isHovered, setIsHovered] = useState(false)
 
   useEffect(() => {
     const checkCartItem = async () => {
@@ -40,11 +46,48 @@ const CartButton = ({ partId }: any) => {
   return (
     <>
       {disableCart[partId] ? (
-        <div className="cart-button-add">
-          <BsFillCartPlusFill
-            style={{ color: '#73cbf3', fontSize: '25px', paddingRight: '5px' }}
-          />{' '}
-          Товар в корзине
+        <div
+          style={
+            isHovered
+              ? { border: '1px solid #BC5D58' }
+              : { border: '1px solid #73cbf3' }
+          }
+          className="cart-button-add"
+          onMouseEnter={() => setIsHovered(true)}
+          onMouseLeave={() => setIsHovered(false)}
+        >
+          {isHovered ? (
+            <div
+              onClick={() => deleteItem(partId, user)}
+              style={{ display: 'flex' }}
+            >
+              <BsFillCartPlusFill
+                style={{
+                  color: '#BC5D58',
+                  fontSize: '25px',
+                  paddingRight: '5px',
+                }}
+              />
+              <p
+                style={{
+                  color: '#BC5D58',
+                }}
+              >
+                Удалить из корзины
+              </p>
+            </div>
+          ) : (
+            <>
+              <BsFillCartPlusFill
+                style={{
+                  color: '#73cbf3',
+                  fontSize: '25px',
+                  paddingRight: '5px',
+                }}
+              />
+              Товар в корзине
+            </>
+          )}
         </div>
       ) : (
         <div onClick={addToCart} className="cart-button">
