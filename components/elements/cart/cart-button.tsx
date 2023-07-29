@@ -13,7 +13,8 @@ import {
   $shoppingCart,
   setDisableCart,
 } from '@/context/shopping-cart'
-import { deleteItem } from '@/utils/shopping-cart'
+import { addToCart, deleteItem } from '@/utils/shopping-cart'
+import { MdDelete } from 'react-icons/md'
 
 const CartButton = ({ partId }: any) => {
   const user = useStore($user)
@@ -33,15 +34,7 @@ const CartButton = ({ partId }: any) => {
     if (user && partId) {
       checkCartItem()
     }
-  }, [])
-
-  const addToCart = async () => {
-    const username: string = user.username
-    await addToCartFx({ url: '/shopping-cart/add', username, partId })
-    const cartItems = await getCartItemsFx(`/shopping-cart/${user.userId}`)
-    const partIdsInCart = cartItems.map((item: any) => item.partId)
-    setDisableCart({ partId, disabled: partIdsInCart.includes(partId) })
-  }
+  }, [user, partId])
 
   return (
     <>
@@ -59,9 +52,13 @@ const CartButton = ({ partId }: any) => {
           {isHovered ? (
             <div
               onClick={() => deleteItem(partId, user)}
-              style={{ display: 'flex' }}
+              style={{
+                display: 'flex',
+                width: '100%',
+                justifyContent: 'center',
+              }}
             >
-              <BsFillCartPlusFill
+              <MdDelete
                 style={{
                   color: '#BC5D58',
                   fontSize: '25px',
@@ -90,7 +87,7 @@ const CartButton = ({ partId }: any) => {
           )}
         </div>
       ) : (
-        <div onClick={addToCart} className="cart-button">
+        <div onClick={() => addToCart(partId, user)} className="cart-button">
           <FiShoppingCart style={{ fontSize: '25px', paddingRight: '5px' }} />{' '}
           Добавить в корзину
         </div>

@@ -12,6 +12,7 @@ export interface ICourseData {
   popularity: number
   bestsellerts: boolean
   new: boolean
+  module: string
   createdAt: string
   updatedAt: string
 }
@@ -19,4 +20,10 @@ export interface ICourseData {
 export interface ICoursesData {
   count: number
   rows: ICourseData[]
+}
+
+export interface IQueryParams {
+  offset: string
+  firs: string
+  partId: string
 }

@@ -125,7 +125,7 @@ a {
   justify-content: center;
   align-items: center;
   height: 100vh;
-  color: white;
+  color: #373736;
   animation: colorSlide 15s cubic-bezier(0.075, 0.82, 0.165, 1) infinite;
 }
 
@@ -147,7 +147,7 @@ a {
 .flex-container .text-center h1 {
   font-size: 8em;
   transition: font-size 200ms ease-in-out;
-  border-bottom: 1px dashed white;
+  border-bottom: 1px dashed #373736;
 }
 
 .flex-container .text-center h1 span#digit1 {
@@ -163,44 +163,23 @@ a {
 }
 
 .flex-container .text-center button {
-  border: 1px solid white;
+  border: 1px solid #373736;
   background: transparent;
   outline: none;
   padding: 10px 20px;
   font-size: 1.1rem;
   font-weight: bold;
-  color: white;
+  color: #373736;
   text-transform: uppercase;
   transition: background-color 200ms ease-in;
   margin: 20px 0;
+  border-radius: 5px;
 }
 
 .flex-container .text-center button:hover {
   background-color: white;
   color: #555;
   cursor: pointer;
-}
-
-@keyframes colorSlide {
-  0% {
-    background-color: #152a68;
-  }
-
-  25% {
-    background-color: royalblue;
-  }
-
-  50% {
-    background-color: seagreen;
-  }
-
-  75% {
-    background-color: tomato;
-  }
-
-  100% {
-    background-color: #152a68;
-  }
 }
 
 @keyframes fadeIn {

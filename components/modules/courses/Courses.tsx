@@ -1,17 +1,16 @@
-import { checkUserAuthFx } from '@/app/api/auth'
 import { getCoursesFx } from '@/app/api/courses'
 import Card from '@/components/elements/cart/card'
 import CartButton from '@/components/elements/cart/cart-button'
 import { $courses, setCourse } from '@/context/course'
+import { $user } from '@/context/user'
 import useUserCheckAuth from '@/hooks/useUserCheckAuth'
-import { toggleCartItem } from '@/utils/shopping-cart'
 import { useStore } from 'effector-react'
-import { forwardRef, useEffect, useState } from 'react'
+import { forwardRef, useEffect } from 'react'
 import { toast } from 'react-toastify'
 
 const Courses = forwardRef((props, ref: any) => {
   const coursesStore = useStore($courses)
-  const user = useUserCheckAuth()
+  const user = useStore($user)
   const loadCourse = async () => {
     try {
       const data = await getCoursesFx('/course?limit=20&offset=0')
@@ -38,9 +37,9 @@ const Courses = forwardRef((props, ref: any) => {
               courseIcon={item.course_logo}
               title={item.course_name}
               price={`${item.price} ₽`}
-              descr={item.you_learn}
               buttonText="Подробнее..."
               cartButton={user ? <CartButton partId={item.id} /> : null}
+              courseId={item.id}
             />
           ))}
       </div>

@@ -5,7 +5,7 @@ import { IShoppingCartItem } from '@/types/shopping-cart'
 const shoppingCart = createDomain()
 
 export const setDisableCart = createEvent<{
-  partId: string
+  partId: string | number
   disabled: boolean
 }>()
 

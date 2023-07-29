@@ -1,22 +1,23 @@
 import React from 'react'
 import Button from '../button'
+import Link from 'next/link'
 
 interface ICard {
   courseIcon: string
   title: string
-  descr: string
   buttonText: string
   price?: string
-  cartButton?: any
+  cartButton?: React.ReactNode
+  courseId?: string | number
 }
 
 const Card = ({
   courseIcon,
   title,
-  descr,
   buttonText,
   price,
   cartButton,
+  courseId,
 }: ICard) => {
   return (
     <li style={{ listStyle: 'none' }}>
@@ -24,10 +25,13 @@ const Card = ({
         <div className="card-item-wrap">
           <div className="card-item-lang">{courseIcon}</div>
           <div className="card-item-title">{title}</div>
-          <div className="card-item-descr">{descr}</div>
+          <br />
           <div className="card-item-price">{price}</div>
+          <br />
           <div className="btn-card-group">
-            <Button>{buttonText}</Button>
+            <Link href={`/course/${courseId}`}>
+              <Button>{buttonText}</Button>
+            </Link>
             {cartButton}
           </div>
         </div>

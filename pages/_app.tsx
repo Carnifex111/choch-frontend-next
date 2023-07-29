@@ -19,6 +19,8 @@ import '@/styles/modules/question.scss'
 import '@/styles/elements/accordion.scss'
 import '@/styles/elements/cart-button.scss'
 import '@/styles/elements/cart-popup.scss'
+import '@/styles/elements/VideoPlayer.scss'
+import '@/styles/modules/courseIntro.scss'
 
 const enhance = withHydrate()
 

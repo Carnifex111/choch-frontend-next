@@ -1,11 +1,10 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { AiOutlineMenu } from 'react-icons/ai'
 import { AiOutlineClose } from 'react-icons/ai'
 import Button from '@/components/elements/button'
 import ROUTES from '@/utils/routes.enum'
 import Link from 'next/link'
-import { IUser } from '@/types/auth'
-import { checkUserAuthFx, logoutFx } from '@/app/api/auth'
+import { logoutFx } from '@/app/api/auth'
 import { SlUser, SlLogin } from 'react-icons/sl'
 import { FiShoppingCart } from 'react-icons/fi'
 import { MdOutlineLogout } from 'react-icons/md'
@@ -13,14 +12,12 @@ import { useRouter } from 'next/router'
 import useUserCheckAuth from '@/hooks/useUserCheckAuth'
 import CartPopup from '@/components/elements/cart/cart-popup'
 import { getCartItemsFx } from '@/app/api/shopping-cart'
-import { useStore } from 'effector-react'
-import { $user } from '@/context/user'
 
 const Header = () => {
   const [isCartPopupOpen, setCartPopupOpen] = useState(false)
   const [burgerOpen, setBurgerOpen] = useState(false)
   const router = useRouter()
-  const user = useStore($user)
+  let user = useUserCheckAuth()
 
   const toggleBurger = () => {
     setBurgerOpen((prevOpen) => !prevOpen)

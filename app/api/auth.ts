@@ -4,6 +4,7 @@ import { ISignUpFx, ISignInFx } from '../../types/auth'
 import api from '../axiosClient'
 import { AxiosError } from 'axios'
 import { HTTPStatus } from '@/constans'
+import { setUser } from '@/context/user'
 
 export const singUpFx = createEffect(
   async ({ url, username, password, email }: ISignUpFx) => {
@@ -32,6 +33,7 @@ export const singInFx = createEffect(
 
 export const logoutFx = createEffect(async (url: string) => {
   try {
+    setUser(null)
     await api.get(url)
   } catch (error) {
     toast.error((error as Error).message)

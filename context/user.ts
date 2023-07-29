@@ -3,8 +3,8 @@ import { createDomain } from 'effector-next'
 
 const user = createDomain()
 
-export const setUser = user.createEvent<IUser>()
+export const setUser = user.createEvent<IUser | null>()
 
 export const $user = user
-  .createStore<IUser>({} as IUser)
+  .createStore<IUser | null>({} as IUser)
   .on(setUser, (_, user) => user)
