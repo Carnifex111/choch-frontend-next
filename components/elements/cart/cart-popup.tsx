@@ -1,22 +1,34 @@
 import { useEffect, useState } from 'react'
 import Button from '../button'
 import CartPopupItem from './cart-item'
-import { toast } from 'react-toastify'
-import { getCartItemsFx } from '@/app/api/shopping-cart'
-import { IShoppingCartItem } from '@/types/shopping-cart'
-import { checkUserAuthFx } from '@/app/api/auth'
 import Spinner from '../spinner'
 import { useStore } from 'effector-react'
-import { $shoppingCart } from '@/context/shopping-cart'
-import { $user } from '@/context/user'
+import { $shoppingCart, setTotalPrice } from '@/context/shopping-cart'
+import { $totalPrice } from '@/context/shopping-cart'
 
 const CartPopup = () => {
   const [isLoading, setIsLoading] = useState(false)
 
   const cartItems = useStore($shoppingCart)
+  const totalPrice = useStore($totalPrice)
+  const shoppingCart = useStore($shoppingCart)
 
   const handleCartClick = (event: any) => {
     event.stopPropagation()
+  }
+
+  useEffect(() => {
+    setTotalPrice(
+      shoppingCart.reduce(
+        (defaultCount: any, item: any) => defaultCount + item.total_price,
+        0
+      )
+    )
+  }, [cartItems])
+
+  const makePay = async () => {
+    try {
+    } catch (err) {}
   }
 
   return (
@@ -40,7 +52,7 @@ const CartPopup = () => {
         ) : (
           'Корзина пуста'
         )}
-        {/* <div className="cart-popup-content-summ">Сумма: {totalPrice} ₽</div> */}
+        <div className="cart-popup-content-summ">Сумма: {totalPrice} ₽</div>
         {cartItems.length ? <Button>Приобрести</Button> : null}
       </div>
     </div>

@@ -1,4 +1,3 @@
-import { Head } from 'next/document'
 import Link from 'next/link'
 
 const Custom404 = () => {

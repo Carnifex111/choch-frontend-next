@@ -3,7 +3,13 @@ import {
   getCartItemsFx,
   removeFromCartFx,
 } from '@/app/api/shopping-cart'
-import { setDisableCart } from '@/context/shopping-cart'
+import {
+  $shoppingCart,
+  $totalPrice,
+  setDisableCart,
+  setTotalPrice,
+} from '@/context/shopping-cart'
+import { useStore } from 'effector-react'
 
 export const deleteItem = async (partId: any, user: any) => {
   await removeFromCartFx(`/shopping-cart/remove/${partId}}`)

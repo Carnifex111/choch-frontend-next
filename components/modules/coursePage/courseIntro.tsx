@@ -46,13 +46,73 @@ const CourseIntro = ({}) => {
           </div>
           <div className="intro-wrap-block-title-right">
             <div className="intro-wrap-block-title-right-img">
-              <img src={course.start_lesson_logo} alt="" />
+              <img src={logo[0]} alt="" />
             </div>
             <div className="course-intro-wrap-block-title-price">
               {course.price} ₽
             </div>
             <div className="course-intro-wrap-block-title-pay">
-              <Button>Купить</Button>
+              {user ? (
+                <div>
+                  {disableCart[partId] ? (
+                    <div
+                      style={
+                        isHovered
+                          ? { border: '1px solid #BC5D58' }
+                          : { border: '1px solid #73cbf3' }
+                      }
+                      className="cart-button-add"
+                      onMouseEnter={() => setIsHovered(true)}
+                      onMouseLeave={() => setIsHovered(false)}
+                    >
+                      {isHovered ? (
+                        <div
+                          onClick={() => deleteItem(partId, user)}
+                          style={{
+                            display: 'flex',
+                            width: '100%',
+                            justifyContent: 'center',
+                          }}
+                        >
+                          <MdDelete
+                            style={{
+                              color: '#BC5D58',
+                              fontSize: '25px',
+                              paddingRight: '5px',
+                            }}
+                          />
+                          <p
+                            style={{
+                              color: '#BC5D58',
+                            }}
+                          >
+                            Удалить из корзины
+                          </p>
+                        </div>
+                      ) : (
+                        <>
+                          <BsFillCartPlusFill
+                            style={{
+                              color: '#73cbf3',
+                              fontSize: '25px',
+                              paddingRight: '5px',
+                            }}
+                          />
+                          Товар в корзине
+                        </>
+                      )}
+                    </div>
+                  ) : (
+                    <Button onClick={() => addToCart(partId, user)}>
+                      Добавить в корзину
+                    </Button>
+                  )}
+                </div>
+              ) : (
+                <Link href={ROUTES.SINGIN}>
+                  <Button>Купить</Button>
+                </Link>
+              )}
             </div>
           </div>
         </div>

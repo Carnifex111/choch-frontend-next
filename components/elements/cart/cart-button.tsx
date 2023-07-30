@@ -1,24 +1,15 @@
-import {
-  addToCartFx,
-  getCartItemsFx,
-  removeFromCartFx,
-} from '@/app/api/shopping-cart'
+import { getCartItemsFx } from '@/app/api/shopping-cart'
 import { useStore } from 'effector-react'
 import { useEffect, useState } from 'react'
 import { FiShoppingCart } from 'react-icons/fi'
 import { BsFillCartPlusFill } from 'react-icons/bs'
 import { $user } from '@/context/user'
-import {
-  $disableCart,
-  $shoppingCart,
-  setDisableCart,
-} from '@/context/shopping-cart'
+import { $disableCart, setDisableCart } from '@/context/shopping-cart'
 import { addToCart, deleteItem } from '@/utils/shopping-cart'
 import { MdDelete } from 'react-icons/md'
 
 const CartButton = ({ partId }: any) => {
   const user = useStore($user)
-  const shoppingCart = useStore($shoppingCart)
   const disableCart = useStore($disableCart)
   const [isHovered, setIsHovered] = useState(false)
 
