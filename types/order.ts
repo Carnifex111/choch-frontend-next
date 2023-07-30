@@ -1,6 +1,6 @@
 export interface IMakePayFx {
   url: string
-  amount: number
+  amount: any
   description: string
 }
 

@@ -4,6 +4,7 @@ import { IShoppingCartItem } from '@/types/shopping-cart'
 
 const shoppingCart = createDomain()
 
+export const setShoppingCart = shoppingCart.createEvent<IShoppingCartItem[]>()
 export const setTotalPrice = shoppingCart.createEvent<number>()
 export const updateCartItemTotalPrice = shoppingCart.createEvent<{
   partId: number
@@ -38,6 +39,7 @@ export const $shoppingCart: any = shoppingCart
   .on(updateCartItemTotalPrice, (state, { partId, total_price }) => [
     ...updateTotalPrice(state, partId, total_price),
   ])
+  .on(setShoppingCart, (_, shoppingCart) => shoppingCart)
 
 export const $disableCart = shoppingCart
   .createStore<{ [partId: string]: boolean }>({})

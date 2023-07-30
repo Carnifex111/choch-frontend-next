@@ -49,7 +49,10 @@ const Header = () => {
 
       <div className="header-min-btn">
         {user ? (
-          <p style={burgerOpen ? { display: 'none' } : { display: 'block' }}>
+          <p
+            onClick={openCart}
+            style={burgerOpen ? { display: 'none' } : { display: 'block' }}
+          >
             <FiShoppingCart
               style={{
                 marginRight: '5px',
@@ -57,6 +60,7 @@ const Header = () => {
                 fontSize: '30px',
               }}
             />
+            {isCartPopupOpen && <CartPopup />}
           </p>
         ) : (
           <Link

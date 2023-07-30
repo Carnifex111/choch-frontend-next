@@ -1,6 +1,7 @@
 .cart-popup{
     position: absolute;
     top: 70px;
+
     &-content{
         display: flex;
         flex-direction: column;
@@ -9,28 +10,73 @@
         box-shadow: 3px 3px 2px 1px rgba(0, 0, 255, .2);
         background: #fff;
         border-radius: 5px;
+        @media(max-width: 575px) {
+            position: absolute;
+            right: -30px;  
+            top: 0;
+            width: 350px;
+        }
+        &-title {
+            @media(max-width: 575px) {
+                margin: 10px 0px;
+                font-size: 20px;
+            }
+        }
+        &-summ{
+            @media(max-width: 575px) {
+                margin: 10px 0px;
+            }
+        }
     }
+
 }
 
 .cart-popup-item{
     display: flex;
     justify-content: space-around;
     position: relative;
+    @media(max-width: 575px) {
+        margin: 10px 0;
+        justify-content: space-between;
+    }
     &-name {
         width: 100px;
+    @media(max-width: 575px) {
+        width: 150px;
+    }
     }
     &-price {
         width: 70px;
         padding-right: 20px;
+        @media(max-width: 575px) {
+            width: 100px;
+        }
     }
     &-icon-dlt {
         position: absolute;
         right: 0px;
         font-size: 23px;
+        @media(max-width: 575px) {
+            top: -3px;
+            position: absolute;
+            font-size: 30px;
+        }
     }
 }
 
 .line{
   width: 100%;
   border-bottom: 1px solid #ddd; 
+}
+
+.popup-btn-txt{
+    @media(max-width: 575px) {
+        font-size: 20px;
+    }
+}
+
+.cart-null{
+    @media(max-width: 575px) {
+        margin: 10px 0;
+    }
 }
