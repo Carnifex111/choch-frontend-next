@@ -279,3 +279,107 @@ body {
   top: 30px;
   left: 30px;
 }
+.payment-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  color: #373736;
+  animation: colorSlide 15s cubic-bezier(0.075, 0.82, 0.165, 1) infinite;
+}
+
+.payment-container .payment-text {
+  text-align: center;
+}
+
+.payment-container .payment-text h1,
+.payment-container .payment-text h3 {
+  margin: 10px;
+  cursor: default;
+}
+
+.payment-container .payment-text h1 .fade-in,
+.payment-container .payment-text h3 .fade-in {
+  animation: fadeIn 2s ease infinite;
+}
+
+.payment-container .payment-text h1 {
+  font-size: 3em;
+  transition: font-size 200ms ease-in-out;
+  border-bottom: 1px dashed #373736;
+}
+
+.payment-container .payment-text button {
+  border: 1px solid #373736;
+  background: transparent;
+  outline: none;
+  padding: 10px 20px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: #373736;
+  text-transform: uppercase;
+  transition: background-color 200ms ease-in;
+  margin: 20px 0;
+  border-radius: 5px;
+}
+
+.payment-container .payment-text button:hover {
+  background-color: white;
+  color: #555;
+  cursor: pointer;
+}
+
+.payment-container .payment-text h1 span#char1 {
+  animation-delay: 100ms;
+}
+.payment-container .payment-text h1 span#char2 {
+  animation-delay: 200ms;
+}
+.payment-container .payment-text h1 span#char3 {
+  animation-delay: 300ms;
+}
+.payment-container .payment-text h1 span#char4 {
+  animation-delay: 400ms;
+}
+.payment-container .payment-text h1 span#char5 {
+  animation-delay: 500ms;
+}
+.payment-container .payment-text h1 span#char6 {
+  animation-delay: 600ms;
+}
+.payment-container .payment-text h1 span#char7 {
+  animation-delay: 700ms;
+}
+.payment-container .payment-text h1 span#char8 {
+  animation-delay: 800ms;
+}
+.payment-container .payment-text h1 span#char9 {
+  animation-delay: 900ms;
+}
+.payment-container .payment-text h1 span#char10 {
+  animation-delay: 1000ms;
+}
+.payment-container .payment-text h1 span#char11 {
+  animation-delay: 1100ms;
+}
+.payment-container .payment-text h1 span#char12 {
+  animation-delay: 1200ms;
+}
+.payment-container .payment-text h1 span#char13 {
+  animation-delay: 1300ms;
+}
+.payment-container .payment-text h1 span#char14 {
+  animation-delay: 1400ms;
+}
+.payment-container .payment-text h1 span#char15 {
+  animation-delay: 1500ms;
+}
+.payment-container .payment-text h1 span#char16 {
+  animation-delay: 1600ms;
+}
+.payment-container .payment-text h1 span#char17 {
+  animation-delay: 1700ms;
+}
+.payment-container .payment-text h1 span#char18 {
+  animation-delay: 1800ms;
+}

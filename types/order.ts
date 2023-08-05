@@ -6,5 +6,12 @@ export interface IMakePayFx {
 
 export interface ICheckPayFx {
   url: string
-  paymentId: string
+  paymentId: string | null
+  userId?: string | null
+  courseIds?: any
+}
+
+export interface IAddUserToCourseFx {
+  userId: number | string
+  courseIds: number[] | string[]
 }

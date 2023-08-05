@@ -41,8 +41,12 @@ const CartPopup = () => {
         description: '',
       })
 
+      const items = cartItems.map((item: any) => item.partId)
+      localStorage.setItem('courses', JSON.stringify(items))
+      localStorage.setItem('paymentId', data.id)
+      localStorage.setItem('userId', user?.userId)
+
       router.push(data.confirmation.confirmation_url)
-      await removeFromCartFx(`/shopping-cart/removeAll/${user?.userId}`)
     } catch (err) {
       toast.error((err as Error).message)
     }

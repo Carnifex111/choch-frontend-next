@@ -1,6 +1,6 @@
 import { createEffect } from 'effector-next'
 import api from '../axiosClient'
-import { ICheckPayFx, IMakePayFx } from '@/types/order'
+import { IAddUserToCourseFx, ICheckPayFx, IMakePayFx } from '@/types/order'
 
 export const makePaymentFx = createEffect(
   async ({ url, amount, description }: IMakePayFx) => {
@@ -11,8 +11,23 @@ export const makePaymentFx = createEffect(
 )
 
 export const checkPaymentFx = createEffect(
-  async ({ url, paymentId }: ICheckPayFx) => {
-    const { data } = await api.post(url, { paymentId })
+  async ({ url, paymentId, userId, courseIds }: ICheckPayFx) => {
+    const { data } = await api.post(url, {
+      paymentId,
+      userId,
+      courseIds,
+    })
+
+    return data
+  }
+)
+
+export const addUserToCourseFx = createEffect(
+  async ({ userId, courseIds }: IAddUserToCourseFx) => {
+    const { data } = await api.post('/api/courses/enroll', {
+      userId,
+      courseIds,
+    })
 
     return data
   }
