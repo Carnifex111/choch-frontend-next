@@ -6,14 +6,23 @@ import NextNProgress from 'nextjs-progressbar'
 import 'react-toastify/dist/ReactToastify.css'
 import '@/styles/globals.css'
 import '@/styles/globalStyles.scss'
+import { useRouter } from 'next/router'
 
 const enhance = withHydrate()
 
 function App({ Component, pageProps }: AppProps) {
+  const router = useRouter()
   const [mounted, setMounted] = useState(false)
 
   useEffect(() => {
     setMounted(true)
+
+    const courses = localStorage.getItem('courses')
+    const userId = localStorage.getItem('userId')
+
+    if (courses && userId) {
+      router.push('/paymentCheckPage')
+    }
   }, [])
 
   return (

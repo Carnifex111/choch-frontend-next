@@ -5,7 +5,7 @@ import Link from 'next/link'
 interface ICard {
   courseIcon: string
   title: string
-  buttonText: string
+  buttonText?: string
   price?: string
   cartButton?: React.ReactNode
   courseId?: string | number

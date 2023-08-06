@@ -1,0 +1,53 @@
+@import '@/styles/variables.scss';
+
+.home{
+   padding: 100px 10px;
+   @media (max-width: 576px) {
+     padding: 70px 10px;
+   }
+   &-title{
+        background: linear-gradient(89.97deg, $blue 50%, $orange 50%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        font-size: 30px;
+        margin-bottom: 20px;
+   }
+   &-no-course {
+    font-size: 20px;
+   }
+   &-subtitle {
+    margin-bottom: 20px;
+   }
+   &-wrap{
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
+    gap: 30px;
+    @media(max-width: 1270px) {
+        justify-content: center;
+    }
+   }
+}
+
+.cart-button-watch{
+    background-color: #fff;
+    cursor: pointer;
+    border-radius: 5px;
+    border: 1px #ddd solid;
+    display: flex;
+    padding: 10px 20px;
+    justify-content: center;
+    align-items: center;
+    transition: all 1s ease;
+    &-icon {
+        font-size: 26px;
+        margin-right: 10px;
+    }
+    &:hover {
+        border: 1px #000 solid;
+    }
+}
