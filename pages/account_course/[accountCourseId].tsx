@@ -8,6 +8,7 @@ import Custom404 from '../404'
 import Head from 'next/head'
 import { checkUserAuthFx } from '@/app/api/auth'
 import { useRouter } from 'next/router'
+import CourseContentViewer from '@/components/layout/сourseContentViewer/courseContentViewer'
 
 const AccountCoursePage = ({ query }: { query: IQueryParamsWatchCourse }) => {
   const oneCourse = useStore($oneCourse)
@@ -61,7 +62,9 @@ const AccountCoursePage = ({ query }: { query: IQueryParamsWatchCourse }) => {
       <Head>
         <title>CHOCH | {oneCourse.course_name}</title>
       </Head>
-      <>{oneCourse.course_name}</>
+      <>
+        <CourseContentViewer />
+      </>
       <br />
       <br />
     </>

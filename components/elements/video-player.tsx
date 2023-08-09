@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 
-const VideoPlayer = ({ linkToVideo, poster }: any) => {
+const VideoPlayer = ({ linkToVideo, poster, className }: any) => {
   useEffect(() => {
     const videoElement = document.getElementById(
       'video-player'
@@ -23,6 +23,7 @@ const VideoPlayer = ({ linkToVideo, poster }: any) => {
         controls
         controlsList="nodownload"
         poster={poster}
+        className={className}
       >
         <source src={linkToVideo} type="video/mp4" />
       </video>

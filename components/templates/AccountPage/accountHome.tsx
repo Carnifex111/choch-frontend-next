@@ -41,8 +41,7 @@ const AccountHome = () => {
                       key={course.course.id}
                       courseIcon={course.course.course_logo}
                       title={course.course.course_name}
-                      buttonText="Подробнее..."
-                      cartButton={<WatchButton>Обучаться</WatchButton>}
+                      buttonText="Учиться!"
                       courseId={course.course.id}
                       link_to_page={`/account_course/${course.course.id}`}
                     />
