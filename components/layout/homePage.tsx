@@ -21,11 +21,13 @@ const HomePage = () => {
   return (
     <>
       <Header />
-      <MainBlock scrollToLang={() => scrollTo(langRef)} />
-      <Lang ref={langRef} scrollToCourse={() => scrollTo(courseRef)} />
-      <Courses ref={courseRef} />
-      <Question />
-      <Footer />
+      <div className="body_wrapper">
+        <MainBlock scrollToLang={() => scrollTo(langRef)} />
+        <Lang ref={langRef} scrollToCourse={() => scrollTo(courseRef)} />
+        <Courses ref={courseRef} />
+        <Question />
+        <Footer />
+      </div>
     </>
   )
 }

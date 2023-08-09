@@ -44,6 +44,7 @@ const AccountHome = () => {
                       buttonText="Подробнее..."
                       cartButton={<WatchButton>Обучаться</WatchButton>}
                       courseId={course.course.id}
+                      link_to_page={`/account_course/${course.course.id}`}
                     />
                   </>
                 ))

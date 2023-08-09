@@ -27,3 +27,7 @@ export interface IQueryParams {
   firs: string
   partId: string
 }
+
+export interface IQueryParamsWatchCourse {
+  accountCourseId: string
+}

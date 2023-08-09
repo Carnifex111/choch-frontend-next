@@ -9,6 +9,7 @@ interface ICard {
   price?: string
   cartButton?: React.ReactNode
   courseId?: string | number
+  link_to_page: string
 }
 
 const Card = ({
@@ -18,6 +19,7 @@ const Card = ({
   price,
   cartButton,
   courseId,
+  link_to_page,
 }: ICard) => {
   return (
     <li style={{ listStyle: 'none' }}>
@@ -29,7 +31,7 @@ const Card = ({
           <div className="card-item-price">{price}</div>
           <br />
           <div className="btn-card-group">
-            <Link href={`/course/${courseId}`}>
+            <Link href={link_to_page ? link_to_page : ''}>
               <Button>{buttonText}</Button>
             </Link>
             {cartButton}

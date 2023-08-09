@@ -43,7 +43,7 @@ export const getCourseByNameFx = createEffect(
 )
 
 export const getUserCoursesFx = createEffect(
-  async ({ userId, url }: { userId: string; url: string }) => {
+  async ({ userId, url }: { userId: number; url: string }) => {
     try {
       const { data } = await api.get(`${url}/${userId}/courses`)
       return data

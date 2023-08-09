@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
-import { useStore } from 'effector-react'
 import { toast } from 'react-toastify'
 import { checkPaymentFx } from '@/app/api/payment'
 import { removeFromCartFx } from '@/app/api/shopping-cart'
@@ -41,6 +40,9 @@ const PaymentCheckPage = () => {
           toast.error(
             'Ошибка при проверке оплаты. Пожалуйста, свяжитесь с поддержкой.'
           )
+          localStorage.removeItem('paymentId')
+          localStorage.removeItem('userId')
+          localStorage.removeItem('courses')
           router.push('/account/home')
         }
       } catch (err) {

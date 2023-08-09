@@ -38,8 +38,8 @@ const Courses = forwardRef((props, ref: any) => {
               title={item.course_name}
               price={`${item.price} ₽`}
               buttonText="Подробнее..."
+              link_to_page={`/course/${item.id}`}
               cartButton={user ? <CartButton partId={item.id} /> : null}
-              courseId={item.id}
             />
           ))}
       </div>
