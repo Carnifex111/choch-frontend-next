@@ -63,7 +63,7 @@ const AccountCoursePage = ({ query }: { query: IQueryParamsWatchCourse }) => {
         <title>CHOCH | {oneCourse.course_name}</title>
       </Head>
       <>
-        <CourseContentViewer />
+        <CourseContentViewer courseId={parseInt(query.accountCourseId)} />
       </>
       <br />
       <br />

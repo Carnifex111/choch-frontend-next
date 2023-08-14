@@ -1,43 +1,19 @@
+import { getDataWatchCourse } from '@/app/api/courses'
 import CourseContentViewerAccordion from '@/components/elements/CourseContentViewerAccordion'
 import VideoPlayer from '@/components/elements/video-player'
+import { setCourse } from '@/context/course'
+import { $watchCourse } from '@/context/courseWatch'
 import { $oneCourse } from '@/context/oneCourse'
 import { useStore } from 'effector-react'
+import { useEffect } from 'react'
 
-const courseData = {
-  id: 1,
-  modules: [
-    {
-      id: 1,
-      title: 'Модуль 1',
-      lessons: [
-        {
-          id: 1,
-          title: 'Почему NestJS?',
-          url: 'google.com',
-        },
-        {
-          id: 1,
-          title: 'Как устроен курс',
-          url: 'google.com',
-        },
-        {
-          id: 1,
-          title: 'Обзор проекта',
-          url: 'google.com',
-        },
-        {
-          id: 1,
-          title: 'Update - Обзор курсов',
-          url: 'google.com',
-        },
-      ],
-    },
-  ],
-}
+const CourseContentViewer = ({ courseId }: { courseId: number }) => {
+  const course = useStore($watchCourse)
 
-const CourseContentViewer = () => {
-  const lessons = courseData.modules[0].lessons
-  const course = useStore($oneCourse)
+  useEffect(() => {
+    getDataWatchCourse({ courseId })
+  }, [])
+
   return (
     <div className="viewer">
       <div className="viewer-left">
@@ -81,33 +57,18 @@ const CourseContentViewer = () => {
 
       <div className="viewer-right">
         <div className="viewer-right-block-title">
-          <h1>CHOCH | Frontend-разработчик</h1>
+          <h1>CHOCH | {course.course_name}</h1>
         </div>
         <div className="viewer-right-block-menu">
-          <CourseContentViewerAccordion
-            title="Модуль 1: Введение"
-            lessons={lessons}
-          />
-          <CourseContentViewerAccordion
-            title="Модуль 2: Настройка окружения"
-            lessons={lessons}
-          />
-          <CourseContentViewerAccordion
-            title="Модуль 3: Введение в Typescript"
-            lessons={lessons}
-          />
-          <CourseContentViewerAccordion
-            title="Модуль 4: Введение в модули"
-            lessons={lessons}
-          />
-          <CourseContentViewerAccordion
-            title="Модуль 5: Введение в контроллеры"
-            lessons={lessons}
-          />
-          <CourseContentViewerAccordion
-            title="Модуль 6: Введение в провайдеры"
-            lessons={lessons}
-          />
+          {course &&
+            course.modules &&
+            course.modules.map((module, index) => (
+              <CourseContentViewerAccordion
+                key={index}
+                title={module.title}
+                lessons={module.lessons}
+              />
+            ))}
         </div>
       </div>
     </div>

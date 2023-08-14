@@ -52,3 +52,14 @@ export const getUserCoursesFx = createEffect(
     }
   }
 )
+
+export const getDataWatchCourse = createEffect(
+  async ({ courseId }: { courseId: number | string }) => {
+    try {
+      const { data } = await api.get(`/course/full-courses/find/${courseId}`)
+      return data
+    } catch (error) {
+      toast.error((error as Error).message)
+    }
+  }
+)
