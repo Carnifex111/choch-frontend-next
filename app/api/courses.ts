@@ -63,3 +63,49 @@ export const getDataWatchCourse = createEffect(
     }
   }
 )
+
+export const getCurrentLessonFx = createEffect(
+  async ({ userId, courseId }: { userId: number; courseId: number }) => {
+    try {
+      const url = `/users/${userId}/courses/${courseId}/progress`
+      const { data } = await api.get(url)
+
+      return data
+    } catch (error) {
+      toast.error((error as Error).message)
+    }
+  }
+)
+
+export const getOneLesson = createEffect(
+  async ({ lessonId }: { lessonId: number }) => {
+    try {
+      const url = `/course/lesson/${lessonId}`
+      const { data } = await api.get(url)
+
+      return data
+    } catch (error) {
+      toast.error((error as Error).message)
+    }
+  }
+)
+
+export const updateCurrentLessonFx = createEffect(
+  async ({
+    userId,
+    courseId,
+    lessonId,
+  }: {
+    userId: number
+    courseId: number
+    lessonId: number
+  }) => {
+    try {
+      const url = `/users/${userId}/courses/${courseId}/progress/${lessonId}`
+      const data = await api.post(url)
+      return data
+    } catch (error) {
+      toast.error((error as Error).message)
+    }
+  }
+)

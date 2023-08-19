@@ -1,7 +1,9 @@
+import { truncateString } from '@/utils/truncateString'
 import React, { useState } from 'react'
 import { AiFillCaretDown } from 'react-icons/ai'
 
 interface ILesson {
+  id: number
   title: string
   url: string
 }
@@ -9,11 +11,15 @@ interface ILesson {
 interface ICourseContentViewerAccordion {
   title: string
   lessons: ILesson[]
+  onLessonSelect: (lesson: ILesson) => void
+  selectedLesson: any
 }
 
 const CourseContentViewerAccordion = ({
   title,
   lessons,
+  onLessonSelect,
+  selectedLesson,
 }: ICourseContentViewerAccordion) => {
   const [isOpen, setIsOpen] = useState(false)
 
@@ -33,15 +39,17 @@ const CourseContentViewerAccordion = ({
         <div className="accordion-content">
           <ul>
             {lessons.map((lesson, index) => (
-              <div className="viewer-lesson-wrap">
-                <li className="viewer-lesson-title" key={index}>
-                  <a
-                    href={lesson.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    {lesson.title}
-                  </a>
+              <div className="viewer-lesson-wrap" key={index}>
+                <li
+                  style={{ cursor: 'pointer' }}
+                  className={
+                    selectedLesson && lesson.id === selectedLesson.id
+                      ? 'current-lesson'
+                      : ''
+                  }
+                  onClick={() => onLessonSelect(lesson)}
+                >
+                  {truncateString(lesson.title, 25)}
                 </li>
               </div>
             ))}

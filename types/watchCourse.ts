@@ -19,6 +19,7 @@ export interface Module {
 
 export interface IWatchCourse {
   id: number
+  currentLesson?: number
   course_logo: string[]
   course_name: string
   category: string

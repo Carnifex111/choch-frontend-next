@@ -1,17 +1,54 @@
-import { getDataWatchCourse } from '@/app/api/courses'
+import { checkUserAuthFx } from '@/app/api/auth'
+import {
+  getCurrentLessonFx,
+  getDataWatchCourse,
+  getOneLesson,
+  updateCurrentLessonFx,
+} from '@/app/api/courses'
 import CourseContentViewerAccordion from '@/components/elements/CourseContentViewerAccordion'
 import VideoPlayer from '@/components/elements/video-player'
-import { setCourse } from '@/context/course'
 import { $watchCourse } from '@/context/courseWatch'
-import { $oneCourse } from '@/context/oneCourse'
+import { $selectedLesson, setSelectedLesson } from '@/context/current-lesson'
+import { $user } from '@/context/user'
 import { useStore } from 'effector-react'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
+import { toast } from 'react-toastify'
 
 const CourseContentViewer = ({ courseId }: { courseId: number }) => {
   const course = useStore($watchCourse)
+  const selectedLesson = useStore($selectedLesson)
+
+  const loadCurrentLesson = async () => {
+    try {
+      const userData = await checkUserAuthFx('/users/login-check')
+
+      const currentLesson = await getCurrentLessonFx({
+        userId: userData.userId,
+        courseId,
+      })
+
+      const lesson = await getOneLesson({ lessonId: currentLesson })
+      setSelectedLesson(lesson)
+    } catch {}
+  }
+
+  const onLessonSelect = async (lesson: any) => {
+    const userData = await checkUserAuthFx('/users/login-check')
+    const userId = userData.userId
+    const courseId = course.id
+    const lessonId = lesson.id
+
+    try {
+      setSelectedLesson(lesson)
+      updateCurrentLessonFx({ userId, courseId, lessonId })
+    } catch (error) {
+      toast.error((error as Error).message)
+    }
+  }
 
   useEffect(() => {
     getDataWatchCourse({ courseId })
+    loadCurrentLesson()
   }, [])
 
   return (
@@ -20,7 +57,9 @@ const CourseContentViewer = ({ courseId }: { courseId: number }) => {
         <VideoPlayer
           className="video-player"
           poster={course.start_lesson_logo}
-          linkToVideo={course.start_lesson}
+          linkToVideo={
+            selectedLesson ? selectedLesson.url : course.start_lesson
+          }
         />
         <div className="viewer-left-materials">
           <div className="viewer-left-materials-title">
@@ -67,6 +106,8 @@ const CourseContentViewer = ({ courseId }: { courseId: number }) => {
                 key={index}
                 title={module.title}
                 lessons={module.lessons}
+                onLessonSelect={onLessonSelect}
+                selectedLesson={selectedLesson}
               />
             ))}
         </div>

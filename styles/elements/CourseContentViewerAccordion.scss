@@ -23,3 +23,12 @@ ul {
         color: $black;
     }
 }
+
+.current-lesson {
+  font-weight: 600;
+  font-size: 20px;
+  background: linear-gradient(89.97deg, $blue 1.84%, $orange 102.67%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+   background-clip: text;
+}
